@@ -1,0 +1,31 @@
+{
+    "firewall": [
+        {
+            "config_value": "ninux",
+            "config_name": "zone",
+            "forward": "ACCEPT",
+            "input": "ACCEPT",
+            "name": "ninux",
+            "network": "ninux vpnbas mesh",
+            "output": "ACCEPT"
+        },
+        {
+            "src": "ninux",
+            "config_value": "ninux2wan",
+            "config_name": "forwarding",
+            "dest": "wan"
+        },
+        {
+            "dest": "ninux",
+            "src": "lan",
+            "config_value": "lan2ninux",
+            "config_name": "forwarding"
+        },
+        {
+            "config_value": "ninux2lan",
+            "config_name": "forwarding",
+            "dest": "lan",
+            "src": "ninux"
+        }
+    ]
+}
