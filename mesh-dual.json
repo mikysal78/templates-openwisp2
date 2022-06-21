@@ -1,0 +1,42 @@
+{
+    "interfaces": [
+        {
+            "wireless": {
+                "mode": "802.11s",
+                "radio": "radio0",
+                "mesh_id": "ninux.org",
+                "mesh_fwding": "0"
+            },
+            "type": "wireless",
+            "name": "mesh0"
+        },
+        {
+            "wireless": {
+                "mode": "802.11s",
+                "radio": "radio1",
+                "mesh_id": "ninux.org",
+                "mesh_fwding": "0"
+            },
+            "type": "wireless",
+            "name": "mesh1"
+        },
+        {
+            "type": "bridge",
+            "bridge_members": [
+                "mesh",
+                "mesh0",
+                "mesh1"
+            ],
+            "name": "mesh",
+            "network": "mesh",
+            "addresses": [
+                {
+                    "proto": "static",
+                    "family": "ipv4",
+                    "address": "{{ ipmesh }}",
+                    "mask": 16
+                }
+            ]
+        }
+    ]
+}
