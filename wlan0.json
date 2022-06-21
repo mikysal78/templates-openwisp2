@@ -1,0 +1,26 @@
+{
+    "interfaces": [
+        {
+            "wireless": {
+                "network": [
+                    "lan"
+                ],
+                "mode": "access_point",
+                "radio": "radio0",
+                "ssid": "{{ SSID }}",
+                "wds": false,
+                "encryption": {
+                    "protocol": "wpa2_personal",
+                    "key": "{{ PASS }}",
+                    "disabled": false,
+                    "cipher": "tkip+ccmp"
+                },
+                "wmm": true,
+                "isolate": false
+            },
+            "type": "wireless",
+            "name": "wlan0",
+            "addresses": []
+        }
+    ]
+}
