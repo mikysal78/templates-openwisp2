@@ -1,0 +1,76 @@
+{
+    "files": [
+        {
+            "path": "/etc/chilli/ipup.sh",
+            "mode": "0744",
+            "contents": "if [ \"$(iptables -L -v -n --line-numbers -t nat | grep MASQUERADE | grep -c $HS_WANIF)\" -eq \"0\" ]; then\n  iptables -I POSTROUTING -t nat -o $HS_WANIF -j MASQUERADE\nfi"
+        },
+        {
+            "path": "/etc/chilli/ipdown.sh",
+            "mode": "0744",
+            "contents": "iptables --flush -t nat"
+        }
+    ],
+    "chilli": [
+        {
+            "config_name": "chilli",
+            "config_value": "chilli1",
+            "tundev": "hot0",
+            "dns1": "8.8.8.8",
+            "dns2": "8.8.4.4",
+            "ipup": "/etc/chilli/up.sh",
+            "ipdown": "/etc/chilli/down.sh",
+            "radiusserver1": "controller.nnxx.ninux.org",
+            "radiusserver2": "controller.nnxx.ninux.org",
+            "dhcpif": "captive-wlan",
+            "uamhomepage": "https://wifi.nnxx.ninux.org",
+            "uamallowed": "wifi.nnxx.ninux.org,192.168.182.0/24,192.168.50.0/24",
+            "redir": true,
+            "acctupdate": true,
+            "dnsparanoia": false,
+            "defsessiontimeout": 10800,
+            "defidletimeout": 300,
+            "defbandwidthmaxdown": "{{ download }}",
+            "defbandwidthmaxup": "{{ upload }}",
+            "radiusnasid": "nas01",
+            "uamserver": "https://wifi.nnxx.ninux.org",
+            "radiussecret": "PassWord-Secret",
+            "uamsecret": "Pass-Secret"
+        }
+    ],
+    "interfaces": [
+        {
+            "wireless": {
+                "network": [
+                    "hotspot"
+                ],
+                "mode": "access_point",
+                "radio": "radio0",
+                "ssid": "ninux.org-hotspot",
+                "wds": false,
+                "encryption": {
+                    "protocol": "none"
+                },
+                "isolate": true
+            },
+            "type": "wireless",
+            "name": "captive-wlan",
+            "addresses": []
+        },
+        {
+            "type": "bridge",
+            "bridge_members": [
+                "captive-wlan"
+            ],
+            "name": "hotspot",
+            "addresses": [
+                {
+                    "proto": "static",
+                    "family": "ipv4",
+                    "address": "192.168.50.1",
+                    "mask": 24
+                }
+            ]
+        }
+    ]
+}
