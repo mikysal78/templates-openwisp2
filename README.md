@@ -1,1 +1,2 @@
-# templates-openwisp2
+Example Templates Json for Openwisp2
+====================================
