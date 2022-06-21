@@ -1,0 +1,14 @@
+{
+    "ntp": {
+        "enabled": true,
+        "enable_server": false,
+        "server": [
+            "ntp1.inrim.it",
+            "ntp2.inrim.it",
+            "0.openwrt.pool.ntp.org",
+            "1.openwrt.pool.ntp.org",
+            "2.openwrt.pool.ntp.org",
+            "3.openwrt.pool.ntp.org"
+        ]
+    }
+}
