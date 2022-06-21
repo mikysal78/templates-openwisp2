@@ -1,0 +1,25 @@
+{
+    "interfaces": [
+        {
+            "wireless": {
+                "network": [
+                    "mesh"
+                ],
+                "mode": "802.11s",
+                "radio": "radio1",
+                "mesh_id": "ninux.org",
+                "mesh_fwding": "0"
+            },
+            "type": "wireless",
+            "name": "mesh",
+            "addresses": [
+                {
+                    "proto": "static",
+                    "family": "ipv4",
+                    "address": "{{ ipmesh }}",
+                    "mask": 16
+                }
+            ]
+        }
+    ]
+}
