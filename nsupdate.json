@@ -1,0 +1,9 @@
+{
+    "files": [
+        {
+            "path": "/root/nsupdate",
+            "mode": "0700",
+            "contents": "#!/bin/sh\nif which nsupdate >/dev/null; then\n\nETH=br-lan\nDOMAIN=router.nnxx\nDNS=10.27.253.1\nSUB=$(cat /proc/sys/kernel/hostname)\nECHO=$(which echo)\nNSUPDATE=$(which nsupdate)\nIP=$(ip addr show dev $ETH | grep 'inet ' | awk '{split($2,a,\"/\");print a[1];}')\n\n$ECHO \"server $DNS\" > /tmp/nsupdate\n$ECHO \"debug no\" >> /tmp/nsupdate\n$ECHO \"zone $DOMAIN.\" >> /tmp/nsupdate\n$ECHO \"update delete $SUB.$DOMAIN\" >> /tmp/nsupdate\n$ECHO \"update add $SUB.$DOMAIN 60 A $IP\" >> /tmp/nsupdate\n$ECHO \"send\" >> /tmp/nsupdate\n\n$NSUPDATE -v /tmp/nsupdate 2>&1\n\nelse\n    echo installo nsupdate, riavvia lo script dopo\n    sleep 5\n    opkg update\n    opkg install bind-client\nfi"
+        }
+    ]
+}
